@@ -34,6 +34,13 @@ public class Blackbelt {
 		return PIANO_NOTES[note];
 	}
 
+	// Get a piano note based on its scientific name.
+	fun float piano( string str, int pitch, int octave ) {
+
+		return 440.0;
+
+	}
+
 	// _.startTrack() makes sure the program stays alive until
 	// calling _.stopTrack(). Doing this with multiple tracks
 	// is good.
