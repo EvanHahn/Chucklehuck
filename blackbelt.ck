@@ -7,7 +7,7 @@ by Evan Hahn (evanhahn.com)
 
 public class Blackbelt {
 
-	// BPM functions.
+	// Set the default BPM to 120.
 	120.000 => float bpm;
 
 	// Get times based on the BPM.
