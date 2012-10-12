@@ -1,26 +1,112 @@
-// Initialize Blackbelt.
 Blackbelt _;
 
-// 140 beats per minute.
-140.0 => _.bpm;
+120.0 => _.bpm;
 
-// Generate a random frequency every d.
-fun void randoms( dur d ) {
-	_.startTrack();
-	SinOsc s => dac;
-	while ( true ) {
-		Math.random2(1, 87) => int index;
-		_.piano(index) => s.freq;
-		d => now;
-	}
-	_.stopTrack();
+fun void bachCrabForward() {
+
+	SinOsc instrument => dac;
+
+	// Measure 1
+	_.piano( "D", 0, 4 ) => instrument.freq;
+	_.halfNote() => now;
+	_.piano( "F", 0, 4 ) => instrument.freq;
+	_.halfNote() => now;
+
+	// Measure 2
+	_.piano( "A", 0, 4 ) => instrument.freq;
+	_.halfNote() => now;
+	_.piano( "B", -1, 4 ) => instrument.freq;
+	_.halfNote() => now;
+
+	// Measure 3
+	_.piano( "C", 1, 4 ) => instrument.freq;
+	_.halfNote() => now;
+	0.0 => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "A", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+
+	// Measure 4
+	_.piano( "A", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "A", -1, 4 ) => instrument.freq;
+	_.halfNote() => now;
+	_.piano( "G", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+
+	// Measure 5
+	_.piano( "G", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "F", 1, 4 ) => instrument.freq;
+	_.halfNote() => now;
+	_.piano( "F", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+
+	// Measure 6
+	_.piano( "F", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "E", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "E", -1, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "D", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+
 }
 
-spork ~ randoms(_.eighthNote());
-spork ~ randoms(_.quarterNote());
-spork ~ randoms(_.halfNote());
-spork ~ randoms(_.fullNote());
+fun void bachCrabBackward() {
 
-while ( true ) {
-	1::second => now;
+	SinOsc instrument => dac;
+
+	// Measure 1
+	_.piano( "D", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "F", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "A", 0, 4 ) => instrument.freq;
+	_.quarterNote() => now;
+	_.piano( "D", 0, 5 ) => instrument.freq;
+	_.quarterNote() => now;
+
+	// Measure 2
+	_.piano( "C", 1, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "D", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "E", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "F", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "G", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "F", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "E", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "D", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+
+	// Measure 3
+	_.piano( "E", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "A", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "E", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "G", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "F", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "E", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "D", 0, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+	_.piano( "C", 1, 5 ) => instrument.freq;
+	_.eighthNote() => now;
+
 }
+
+spork ~ bachCrabForward();
+spork ~ bachCrabBackward();
+
+(18 * (_.fullNote())) => now;
