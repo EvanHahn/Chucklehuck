@@ -7,7 +7,15 @@ by Evan Hahn (evanhahn.com)
 
 public class Blackbelt {
 
-	// Set the default BPM to 120.
+	// Utility functions
+	// ===================================================================
+
+	// None yet!
+
+	// Music stuff
+	// ===================================================================
+
+	// Variables and their defaults.
 	120.000 => float bpm;
 
 	// Get times based on the BPM.
@@ -24,6 +32,17 @@ public class Blackbelt {
 	// Get a piano note.
 	fun float piano( int note ) {
 		return PIANO_NOTES[note];
+	}
+
+	// _.startTrack() makes sure the program stays alive until
+	// calling _.stopTrack(). Doing this with multiple tracks
+	// is good.
+	0 => int trackCount;
+	fun void startTrack() {
+		trackCount++;
+	}
+	fun void stopTrack() {
+		trackCount--;
 	}
 
 }

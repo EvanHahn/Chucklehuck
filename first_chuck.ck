@@ -4,17 +4,22 @@ Blackbelt _;
 // 140 beats per minute.
 140.0 => _.bpm;
 
-// Generate random shit.
-fun void go() {
+// Generate a random frequency every d.
+fun void randoms( dur d ) {
+	_.startTrack();
 	SinOsc s => dac;
 	while ( true ) {
-		_.quarterNote() => now;
 		Math.random2f(30.0, 1000.0) => s.freq;
+		d => now;
 	}
+	_.stopTrack();
 }
 
-spork ~ go();
-spork ~ go();
+spork ~ randoms(_.eighthNote());
+spork ~ randoms(_.quarterNote());
+spork ~ randoms(_.halfNote());
+spork ~ randoms(_.fullNote());
 
-while ( true )
+while ( true ) {
 	1::second => now;
+}
