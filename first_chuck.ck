@@ -9,7 +9,8 @@ fun void randoms( dur d ) {
 	_.startTrack();
 	SinOsc s => dac;
 	while ( true ) {
-		Math.random2f(30.0, 1000.0) => s.freq;
+		Math.random2(1, 87) => int index;
+		_.piano(index) => s.freq;
 		d => now;
 	}
 	_.stopTrack();
